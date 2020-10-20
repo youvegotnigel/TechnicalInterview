@@ -43,11 +43,26 @@ public class RestAssured {
                 then().
                 body("name", equalTo("abc")).  // verify name
                 body("job", equalTo("leader")).  // verify job
-                statusCode(201).log().all();
+                statusCode(201).log().all();        //extract id
     }
 
     @Test
     public void test03(){
 
+        JSONObject request = new JSONObject();
+        request.put("name","cde");
+        request.put("job","leader");
+
+
+        given().header("Content-Type","application/json").
+                contentType(ContentType.JSON).
+                accept(ContentType.JSON).
+                body(request.toJSONString()).
+                when().
+                put("https://reqres.in/api/users/969").  //id was extracted = 969
+                then().
+                body("name", equalTo("cde")).  // verify name
+                body("job", equalTo("leader")).  // verify job
+                statusCode(200).log().all();
     }
 }

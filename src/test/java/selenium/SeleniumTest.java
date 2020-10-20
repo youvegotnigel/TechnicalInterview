@@ -24,7 +24,7 @@ public class SeleniumTest {
     }
 
     @Test
-    public void test01() throws InterruptedException {
+    public void test01() {
         driver.get("http://the-internet.herokuapp.com/tables");
         String title = driver.getTitle();
         //System.out.println(title);
