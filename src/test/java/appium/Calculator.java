@@ -25,6 +25,7 @@ public class Calculator {
         caps.setCapability("deviceName", "31f89655");
         caps.setCapability("platformName", "Android");
         caps.setCapability("platformVersion", "10.0.0");
+        //How to find "appPackage" and "appActivity" - check read.me file
         caps.setCapability("appPackage", "com.sec.android.app.popupcalculator");
         caps.setCapability("appActivity", "com.sec.android.app.popupcalculator.Calculator");
 

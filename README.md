@@ -1,3 +1,16 @@
 # Technical Interview
 
-Article Link: https://docs.google.com/document/d/1Pft9V_D_0oni5WInxFxbDdvft61NdvPVmK8bSh72acs/edit?usp=sharing
+Article Link: [doc](https://docs.google.com/document/d/1Pft9V_D_0oni5WInxFxbDdvft61NdvPVmK8bSh72acs/edit?usp=sharing)
+Github Link: [github](https://github.com/youvegotnigel/TechnicalInterview.git)
+Medium Link: [medium](https://medium.com/automationmaster/appium-mobile-app-automation-406bf8b0fd80)
+
+## How to find "appPackage" and "appActivity"
+```bash
+connect device and make sure usb debugging is on.
+run- adb devices
+open the desired application on the mobile device.
+run- adb shell
+run- dumpsys window windows
+```
+![Find them here](resources/image.PNG?raw=true "appPackage and appActivity")
+
