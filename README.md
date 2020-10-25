@@ -1,8 +1,8 @@
 # Technical Interview
 
-Article Link: [doc](https://docs.google.com/document/d/1Pft9V_D_0oni5WInxFxbDdvft61NdvPVmK8bSh72acs/edit?usp=sharing)
-Github Link: [github](https://github.com/youvegotnigel/TechnicalInterview.git)
-Medium Link: [medium](https://medium.com/automationmaster/appium-mobile-app-automation-406bf8b0fd80)
+Article Link: [doc](https://docs.google.com/document/d/1Pft9V_D_0oni5WInxFxbDdvft61NdvPVmK8bSh72acs/edit?usp=sharing)<br />
+Github Link: [github](https://github.com/youvegotnigel/TechnicalInterview.git)<br />
+Medium Link: [medium](https://medium.com/automationmaster/appium-mobile-app-automation-406bf8b0fd80)<br />
 
 ## How to find "appPackage" and "appActivity"
 ```bash
