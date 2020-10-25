@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -20,7 +21,14 @@ public class SeleniumTest {
     @BeforeMethod
     public void setup(){
         System.setProperty("webdriver.chrome.driver", "resources\\chromedriver.exe");
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(getChromeOptions()); //pass chrome options to the driver.
+    }
+
+    private ChromeOptions getChromeOptions(){
+        ChromeOptions options = new ChromeOptions();
+        //options.addArguments("disable-infobars"); // this is now disable by chrome latest versions
+        options.setHeadless(true);
+        return options;
     }
 
     @Test
