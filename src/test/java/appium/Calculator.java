@@ -66,6 +66,7 @@ public class Calculator {
 
     @AfterMethod
     public void teardown() {
+        //quit the driver
         driver.quit();
     }
 }
