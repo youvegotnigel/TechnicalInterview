@@ -79,6 +79,19 @@
         </dependency>
 
 
+        <!-- AppiumLocator-->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy</artifactId>
+            <version>3.0.0-beta-3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.0.6</version>
+        </dependency>
+        <!-- AppiumLocator-->
+
     </dependencies>
 
 

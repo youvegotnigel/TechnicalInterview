@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test name="Practical Test">
         <classes>
             <class name="appium.Calculator">
                 <methods>
                     <include name="verifyAddition"/>
+                    <include name="test"/>
                 </methods>
             </class>
             <class name="restAssured.RestAssured">

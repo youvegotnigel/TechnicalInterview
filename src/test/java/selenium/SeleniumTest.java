@@ -7,9 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +16,7 @@ public class SeleniumTest {
 
     private WebDriver driver;
 
-    @BeforeMethod
+    @BeforeClass
     public void setup(){
         System.setProperty("webdriver.chrome.driver", "resources\\chromedriver.exe");
         driver = new ChromeDriver(getChromeOptions()); //pass chrome options to the driver.
@@ -104,7 +102,7 @@ public class SeleniumTest {
     }
 
 
-    @AfterMethod
+    @AfterClass
     public void tearDown(){
         driver.quit();
     }
