@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,6 +36,7 @@ public class SeleniumTest {
         String title = driver.getTitle();
         //System.out.println(title);
         Assert.assertEquals(title,"The Internet");
+        System.out.println("This is test01");
 
         //Get row count
         int rowCount = driver.findElements(By.xpath("//*[@id='table1']/tbody/tr")).size();
@@ -50,6 +52,62 @@ public class SeleniumTest {
             for(int j=1; j<colCount; j++){
                 System.out.println(driver.findElement(By.xpath("//*[@id='table1']/tbody/tr["+i+"]/td["+j+"]")).getText());
             }
+        }
+
+    }
+
+
+    @Test
+    //do test01() in a different method
+    public void test01_With_List_01(){
+
+        driver.get("http://the-internet.herokuapp.com/tables");
+        String title = driver.getTitle();
+        //System.out.println(title);
+        Assert.assertEquals(title,"The Internet");
+        System.out.println("This is test01_With_List_01");
+
+        List <WebElement> rows = driver.findElements(By.xpath("//*[@id='table1']/tbody/tr"));
+
+        for(int i=0; i<rows.size(); i++){
+            System.out.println(rows.get(i).getText());
+        }
+
+    }
+
+    @Test
+    //do test01() in a different method
+    public void test01_With_List_02(){
+
+        driver.get("http://the-internet.herokuapp.com/tables");
+        String title = driver.getTitle();
+        //System.out.println(title);
+        Assert.assertEquals(title,"The Internet");
+        System.out.println("This is test01_With_List_02");
+
+        List <WebElement> tableRowsList = driver.findElements(By.xpath("//*[@id='table1']/tbody/tr"));
+
+        for(WebElement temp : tableRowsList){
+            System.out.println(temp.getText());
+        }
+
+    }
+
+    @Test
+    //do test01() in a different method
+    public void test01_With_List_03(){
+
+        driver.get("http://the-internet.herokuapp.com/tables");
+        String title = driver.getTitle();
+        //System.out.println(title);
+        Assert.assertEquals(title,"The Internet");
+        System.out.println("This is test01_With_List_03");
+
+        List <WebElement> tableRowsList = driver.findElements(By.xpath("//*[@id='table1']/tbody/tr"));
+
+        Iterator <WebElement> tableRowIterator = tableRowsList.iterator();
+        while (tableRowIterator.hasNext()){
+            System.out.println(tableRowIterator.next().getText());
         }
 
     }
