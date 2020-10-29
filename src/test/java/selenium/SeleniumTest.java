@@ -47,7 +47,7 @@ public class SeleniumTest {
         //System.out.println(colCount);
 
 
-        // Print the contents of each cell
+        // Print the contents of each cell in a for loop
         for(int i=1; i<=rowCount; i++){
             for(int j=1; j<colCount; j++){
                 System.out.println(driver.findElement(By.xpath("//*[@id='table1']/tbody/tr["+i+"]/td["+j+"]")).getText());
@@ -69,6 +69,7 @@ public class SeleniumTest {
 
         List <WebElement> rows = driver.findElements(By.xpath("//*[@id='table1']/tbody/tr"));
 
+        //use for loop to print list
         for(int i=0; i<rows.size(); i++){
             System.out.println(rows.get(i).getText());
         }
@@ -87,6 +88,7 @@ public class SeleniumTest {
 
         List <WebElement> tableRowsList = driver.findElements(By.xpath("//*[@id='table1']/tbody/tr"));
 
+        //use enhanced for loop to print list
         for(WebElement temp : tableRowsList){
             System.out.println(temp.getText());
         }
@@ -106,6 +108,7 @@ public class SeleniumTest {
         List <WebElement> tableRowsList = driver.findElements(By.xpath("//*[@id='table1']/tbody/tr"));
 
         Iterator <WebElement> tableRowIterator = tableRowsList.iterator();
+        // use while loop to print list
         while (tableRowIterator.hasNext()){
             System.out.println(tableRowIterator.next().getText());
         }
