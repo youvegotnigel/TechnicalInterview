@@ -4,23 +4,29 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.kushan.appium.locator.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import utils.AllureListener;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
+@Listeners({AllureListener.class})
 public class Calculator {
 
     public AndroidDriver<MobileElement> driver;
     public WebDriverWait wait;
+    //create a thread driver
+    public static ThreadLocal<WebDriver> tdriver = new ThreadLocal<WebDriver>();
 
     @BeforeMethod
-    public void setup() throws MalformedURLException {
+    public WebDriver setup() throws MalformedURLException {
 
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("deviceName", "31f89655");
@@ -34,6 +40,10 @@ public class Calculator {
 
         driver = new AndroidDriver<MobileElement>(url, caps);
         wait = new WebDriverWait(driver, 10);
+
+        //initialize the driver to create a tread
+        tdriver.set(driver);
+        return getDriver();
     }
 
     @Test
@@ -69,7 +79,7 @@ public class Calculator {
     public void test()
     {
         //find locators
-        AppiumLocator.GetAppiumLocators();
+        //AppiumLocator.GetAppiumLocators();
     }
 
 
@@ -77,5 +87,10 @@ public class Calculator {
     public void teardown() {
         //quit the driver
         driver.quit();
+    }
+
+    //pass the driver in thread
+    public static synchronized WebDriver getDriver() {
+        return tdriver.get();
     }
 }

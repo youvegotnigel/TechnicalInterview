@@ -22,7 +22,7 @@ public class RestAssured {
         int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 200); // verify status code is 200
 
-        given().get("https://reqres.in/api/users?page=2").then().statusCode(200).body("data.id", hasItems(4,5,6)); // verify items 4,5,6 exsists
+        given().get("https://reqres.in/api/users?page=2").then().statusCode(200).body("data.id", hasItems(4,5,6)); // verify items 4,5,6 exists
     }
 
     @Test

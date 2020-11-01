@@ -7,3 +7,5 @@ screen.png
 *.iml
 target
 test-output
+allure-report
+allure-results

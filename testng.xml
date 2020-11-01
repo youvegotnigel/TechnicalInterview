@@ -6,7 +6,6 @@
             <class name="appium.Calculator">
                 <methods>
                     <include name="verifyAddition"/>
-                    <include name="test"/>
                 </methods>
             </class>
             <class name="restAssured.RestAssured">
