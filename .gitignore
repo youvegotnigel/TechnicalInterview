@@ -9,3 +9,5 @@ target
 test-output
 allure-report
 allure-results
+debug.log
+writeFile.json
