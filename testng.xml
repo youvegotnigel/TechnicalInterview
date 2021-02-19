@@ -8,7 +8,7 @@
 <!--                    <include name="verifyAddition"/>-->
 <!--                </methods>-->
 <!--            </class>-->
-            <class name="restAssured.RestAssured">
+            <class name="restAssured.RestAssuredTest">
                 <methods>
                     <include name="test01"/>
                     <include name="test02"/>
