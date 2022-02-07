@@ -2,28 +2,33 @@ package restAssured;
 
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.Test;
-import static io.restassured.RestAssured.*;
+//import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.get;
+import static io.restassured.RestAssured.given;
+import static org.junit.internal.matchers.IsCollectionContaining.hasItems;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.json.simple.JSONObject;
 import org.testng.Assert;
-import static org.hamcrest.Matchers.*;
 
 public class RestAssuredTest {
+
+    private static String ID = "";
 
     @Test
     public void test01() {
 
         Response response = get("https://reqres.in/api/users?page=2");
 
-        System.out.println(response.getStatusCode());
-        //System.out.println(response.asString()); // print json
+        response.prettyPrint();
 
-        int statusCode = response.getStatusCode();
-        Assert.assertEquals(statusCode, 200); // verify status code is 200
+        Assert.assertEquals(response.getStatusCode(), 200); // verify status code is 200
+        Assert.assertTrue(response.jsonPath().getString("data.id").contains("7"));
+        Assert.assertTrue(response.jsonPath().getString("data.id").contains("8"));
+        Assert.assertTrue(response.jsonPath().getString("data.id").contains("9"));
 
-        given().get("https://reqres.in/api/users?page=2").then().statusCode(200).body("data.id", hasItems(4,5,6)); // verify items 4,5,6 exists
+        given().get("https://reqres.in/api/users?page=2").then().statusCode(200).body("data.id", hasItems(7,8,9)); // verify items 4,5,6 exists
     }
 
     @Test
@@ -33,18 +38,17 @@ public class RestAssuredTest {
         request.put("name","abc");
         request.put("job","leader");
 
-        given().body(request.toJSONString()).when().post("https://reqres.in/api/users").then().statusCode(201); // verify status code
+        Response response = given().header("Content-Type","application/json")
+                .body(request.toJSONString())
+                .post("https://reqres.in/api/users");
 
-        given().header("Content-Type","application/json").
-               // contentType(ContentType.JSON).
-              //  accept(ContentType.JSON).
-                body(request.toJSONString()).
-                when().
-                post("https://reqres.in/api/users").
-                then().
-                body("name", equalTo("abc")).  // verify name
-                body("job", equalTo("leader")).  // verify job
-                statusCode(201).log().all();        //extract id
+        response.prettyPrint();
+
+        Assert.assertEquals(response.getStatusCode(), 201);
+        Assert.assertEquals(response.jsonPath().getString("name"), "abc");
+        Assert.assertEquals(response.jsonPath().getString("job"), "leader");
+        ID = response.jsonPath().getString("id");
+        System.out.println("ID is ::: " + ID);
     }
 
     @Test
@@ -54,16 +58,35 @@ public class RestAssuredTest {
         request.put("name","cde");
         request.put("job","leader");
 
+        Response response = given().header("Content-Type","application/json")
+                .body(request.toJSONString())
+                .when()
+                .put("https://reqres.in/api/users/{ID}", ID);
 
-        given().header("Content-Type","application/json").
-                contentType(ContentType.JSON).
-                accept(ContentType.JSON).
-                body(request.toJSONString()).
-                when().
-                put("https://reqres.in/api/users/969").  //id was extracted = 969
-                then().
-                body("name", equalTo("cde")).  // verify name
-                body("job", equalTo("leader")).  // verify job
-                statusCode(200).log().all();
+        response.prettyPrint();
+
+        Assert.assertEquals(response.getStatusCode(), 200);
+        Assert.assertEquals(response.jsonPath().getString("name"), "cde");
+        Assert.assertEquals(response.jsonPath().getString("job"), "leader");
+    }
+
+    @Test
+    public void test04(){
+
+        JSONObject request = new JSONObject();
+        request.put("name","stu");
+        request.put("job","member");
+
+        Response response = given().header("Content-Type","application/json")
+                .body(request.toJSONString())
+                .pathParam("ID",ID)
+                .when()
+                .put("https://reqres.in/api/users/{ID}");
+
+        response.prettyPrint();
+
+        Assert.assertEquals(response.getStatusCode(), 200);
+        Assert.assertEquals(response.jsonPath().getString("name"), "stu");
+        Assert.assertEquals(response.jsonPath().getString("job"), "member");
     }
 }
